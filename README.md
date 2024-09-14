@@ -35,10 +35,10 @@ We do take a similar approach but instead of appending a `-ls69` or `-r420` pref
 
 | Container                                          | Immutable |
 |----------------------------------------------------|-----------|
-| `ghcr.io/kashalls/sonarr:rolling`                   | ❌         |
-| `ghcr.io/kashalls/sonarr:3.0.8.1507`                | ❌         |
-| `ghcr.io/kashalls/sonarr:rolling@sha256:8053...`    | ✅         |
-| `ghcr.io/kashalls/sonarr:3.0.8.1507@sha256:8053...` | ✅         |
+| `ghcr.io/kashalls/samba:rolling`                   | ❌         |
+| `ghcr.io/kashalls/samba:3.0.8.1507`                | ❌         |
+| `ghcr.io/kashalls/samba:rolling@sha256:8053...`    | ✅         |
+| `ghcr.io/kashalls/samba:3.0.8.1507@sha256:8053...` | ✅         |
 
 _If pinning an image to the sha256 digest, tools like [Renovate](https://github.com/renovatebot/renovate) support updating the container on a digest or application version change._
 
@@ -50,13 +50,13 @@ To run these containers as non-root make sure you update your configuration to t
 
 ```yaml
 networks:
-  sonarr:
-    name: sonarr
+  samba:
+    name: samba
     external: true
 services:
-  sonarr:
-    image: ghcr.io/kashalls/sonarr:3.0.8.1507
-    container_name: sonarr
+  samba:
+    image: ghcr.io/kashalls/samba:3.0.8.1507
+    container_name: samba
     user: 65534:65534
     # ...
 ```
@@ -67,7 +67,7 @@ services:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sonarr
+  name: samba
 # ...
 spec:
   # ...
@@ -108,32 +108,7 @@ Each Image will be built with a `rolling` tag, along with tags specific to it's 
 
 Container | Channel | Image
 --- | --- | ---
-[actions-runner](https://github.com/kashalls/containers/pkgs/container/actions-runner) | stable | ghcr.io/kashalls/actions-runner
-[bazarr](https://github.com/kashalls/containers/pkgs/container/bazarr) | stable | ghcr.io/kashalls/bazarr
-[home-assistant](https://github.com/kashalls/containers/pkgs/container/home-assistant) | stable | ghcr.io/kashalls/home-assistant
-[jbops](https://github.com/kashalls/containers/pkgs/container/jbops) | stable | ghcr.io/kashalls/jbops
-[lidarr](https://github.com/kashalls/containers/pkgs/container/lidarr) | master | ghcr.io/kashalls/lidarr
-[lidarr-develop](https://github.com/kashalls/containers/pkgs/container/lidarr-develop) | develop | ghcr.io/kashalls/lidarr-develop
-[lidarr-nightly](https://github.com/kashalls/containers/pkgs/container/lidarr-nightly) | nightly | ghcr.io/kashalls/lidarr-nightly
-[par2cmdline-turbo](https://github.com/kashalls/containers/pkgs/container/par2cmdline-turbo) | stable | ghcr.io/kashalls/par2cmdline-turbo
-[plex](https://github.com/kashalls/containers/pkgs/container/plex) | stable | ghcr.io/kashalls/plex
-[plex-beta](https://github.com/kashalls/containers/pkgs/container/plex-beta) | beta | ghcr.io/kashalls/plex-beta
-[postgres-init](https://github.com/kashalls/containers/pkgs/container/postgres-init) | stable | ghcr.io/kashalls/postgres-init
-[prowlarr](https://github.com/kashalls/containers/pkgs/container/prowlarr) | master | ghcr.io/kashalls/prowlarr
-[prowlarr-develop](https://github.com/kashalls/containers/pkgs/container/prowlarr-develop) | develop | ghcr.io/kashalls/prowlarr-develop
-[prowlarr-nightly](https://github.com/kashalls/containers/pkgs/container/prowlarr-nightly) | nightly | ghcr.io/kashalls/prowlarr-nightly
-[qbittorrent](https://github.com/kashalls/containers/pkgs/container/qbittorrent) | stable | ghcr.io/kashalls/qbittorrent
-[qbittorrent-beta](https://github.com/kashalls/containers/pkgs/container/qbittorrent-beta) | beta | ghcr.io/kashalls/qbittorrent-beta
-[radarr](https://github.com/kashalls/containers/pkgs/container/radarr) | master | ghcr.io/kashalls/radarr
-[radarr-develop](https://github.com/kashalls/containers/pkgs/container/radarr-develop) | develop | ghcr.io/kashalls/radarr-develop
-[radarr-nightly](https://github.com/kashalls/containers/pkgs/container/radarr-nightly) | nightly | ghcr.io/kashalls/radarr-nightly
-[readarr-develop](https://github.com/kashalls/containers/pkgs/container/readarr-develop) | develop | ghcr.io/kashalls/readarr-develop
-[readarr-nightly](https://github.com/kashalls/containers/pkgs/container/readarr-nightly) | nightly | ghcr.io/kashalls/readarr-nightly
-[sabnzbd](https://github.com/kashalls/containers/pkgs/container/sabnzbd) | stable | ghcr.io/kashalls/sabnzbd
-[sonarr](https://github.com/kashalls/containers/pkgs/container/sonarr) | main | ghcr.io/kashalls/sonarr
-[sonarr-develop](https://github.com/kashalls/containers/pkgs/container/sonarr-develop) | develop | ghcr.io/kashalls/sonarr-develop
-[theme-park](https://github.com/kashalls/containers/pkgs/container/theme-park) | stable | ghcr.io/kashalls/theme-park
-[volsync](https://github.com/kashalls/containers/pkgs/container/volsync) | stable | ghcr.io/kashalls/volsync
+[iperf](https://github.com/kashalls/containers/pkgs/container/iperf) | stable | ghcr.io/kashalls/iperf
 
 
 ## Deprecations
