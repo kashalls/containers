@@ -3,3 +3,6 @@
 file:
   /usr/local/bin/iperf3:
     exists: true
+port:
+  tcp:5021:
+    listening: true
