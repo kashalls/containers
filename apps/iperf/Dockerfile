@@ -1,11 +1,11 @@
-FROM docker.io/library/alpine:3.20 AS builder
+FROM debian:bullseye-slim AS builder
 
 ARG TARGETPLATFORM
 ARG VERSION
 ARG CHANNEL
 
 # Install dependencies
-RUN apk update && apkinstall -y \
+RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     ca-certificates \
