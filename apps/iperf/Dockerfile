@@ -51,7 +51,7 @@ COPY --from=builder /usr/lib/x86_64-linux-gnu/libssl.so.1.1 /usr/lib/x86_64-linu
 # Set the library path
 ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/lib/x86_64-linux-gnu
 
-USER nobody:nogroup
+#USER nobody:nogroup
 EXPOSE 5201
 
 ENTRYPOINT ["/usr/local/bin/iperf3"]
