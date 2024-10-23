@@ -7,7 +7,7 @@ ARG CHANNEL
 
 # Install necessary packages for building Samba and smbclient
 RUN apt update
-RUN apt-get -y install \
+RUN apt-get update && apt-get install -y \
         acl \
         apt-utils \
         attr \
@@ -33,7 +33,6 @@ RUN apt-get -y install \
         gzip \
         heimdal-multidev \
         hostname \
-        htop \
         jq \
         krb5-config \
         krb5-kdc \
@@ -124,8 +123,29 @@ RUN curl -fSL https://download.samba.org/pub/samba/stable/samba-${VERSION}.tar.g
     cd .. && \
     rm -rf samba-${VERSION} samba-${VERSION}.tar.gz
 
+# Stage 2: Final Image
+FROM debian:bookworm-slim
+
+# Install runtime dependencies for Samba and smbclient
+RUN apt-get update && apt-get install -y \
+    smbclient \
+    libacl1 \
+    libattr1 \
+    libgnutls30 \
+    libkrb5-3 \
+    libldap-2.5-0 \
+    liblmdb0 \
+    libpopt0 \
+    libreadline8 \
+    zlib1g \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy Samba from the builder stage
+COPY --from=builder /usr/local/samba /usr/local/samba
+
 # Create a non-root user
 RUN useradd -M -s /bin/false smbuser
+
 
 # Ensure the data directory exists and has appropriate permissions
 RUN mkdir -p /data && \
@@ -136,4 +156,4 @@ RUN mkdir -p /data && \
 EXPOSE 445
 
 # Set the entrypoint to start the Samba server, expecting the user to provide their own smb.conf
-ENTRYPOINT ["smbd", "--foreground", "--no-process-group", "-s", "/etc/samba/smb.conf"]
+ENTRYPOINT ["/usr/local/samba/sbin/smbd", "--foreground", "--no-process-group", "-s", "/etc/samba/smb.conf"]
