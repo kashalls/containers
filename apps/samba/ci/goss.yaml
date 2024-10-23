@@ -1,0 +1,8 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/goss-org/goss/master/docs/schema.yaml
+file:
+  /usr/local/bin/iperf3:
+    exists: true
+port:
+  tcp:445:
+    listening: true
