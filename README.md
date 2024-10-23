@@ -109,6 +109,7 @@ Each Image will be built with a `rolling` tag, along with tags specific to it's 
 Container | Channel | Image
 --- | --- | ---
 [iperf](https://github.com/kashalls/containers/pkgs/container/iperf) | stable | ghcr.io/kashalls/iperf
+[samba](https://github.com/kashalls/containers/pkgs/container/samba) | stable | ghcr.io/kashalls/samba
 
 
 ## Deprecations
